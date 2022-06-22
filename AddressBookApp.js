@@ -1,3 +1,6 @@
+let isUpdate = false;
+let addressBookObj = {};
+
 window.addEventListener('DOMContentLoaded', (event) => {
     const name = document.querySelector('#text');
     const textError = document.querySelector('.text-error');
@@ -13,7 +16,31 @@ window.addEventListener('DOMContentLoaded', (event) => {
             textError.textContent = e;
         }
     });
+    checkForUpdate();
 });
+
+const checkForUpdate = () => {
+    const addressBookJson = localStorage.getItem('editPer');
+    isUpdate = addressBookJson ? true : false ;
+    if (!isUpdate) return ;
+    addressBookObj = JSON.parse(addressBookJson);
+    setForm();
+}
+
+const setForm = () => {
+    setvalue('#text', addressBookObj._text);
+    setvalue('#address', addressBookObj._address);
+    setvalue('#city', addressBookObj._city);
+    setvalue('#state', addressBookObj._state);
+    setvalue('#zip', addressBookObj._zip);
+    setvalue('#number', addressBookObj._number);
+
+}
+
+const setvalue = (id, value) => {
+    const element = document.querySelector(id);
+    element.value = value;
+}
 
 const save = () => {
     try {
@@ -51,3 +78,4 @@ const getInputValueById = (id) => {
     let value = document.querySelector(id).value;
     return value;
 }
+

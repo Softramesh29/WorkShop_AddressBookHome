@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     addressBookList = getAddressBookDataFromStorage();
     document.querySelector(".contact-count").textContent = addressBookList.length;
     createInnerHtml();
-    localStorage.removeItem('editEmp');
+    localStorage.removeItem('editPer');
 });
 
 const getAddressBookDataFromStorage = () => {
@@ -26,8 +26,8 @@ const createInnerHtml = () => {
                 <td>${addressBookData._zip}</td>
                 <td>${addressBookData._number}</td>
                 <td>
-                <img id="${addressBookData._id}" onclick="remove(this)" src="../Assets/assets/icons/delete-black-18dp.svg" alt="delete">
-                <img id="${addressBookData._id}" onclick="update(this)" src="../Assets/assets/icons/create-black-18dp.svg" alt="edit">
+                <img id="${addressBookData._id}" onclick="remove(0)" src="../Assets/assets/icons/delete-black-18dp.svg" alt="delete">
+                <img id="${addressBookData._id}" onclick="update(0)" src="../Assets/assets/icons/create-black-18dp.svg" alt="edit">
                  </td>
             </tr>
     `;
@@ -45,6 +45,13 @@ const remove = (node) => {
     localStorage.setItem("AddressBookList", JSON.stringify(addressBookList));
     document.querySelector(".contact-count").textContent = addressBookList.length;
     createInnerHtml();
+}
+
+const update = (node) => {
+    let addressBookData = addressBookList.find(perData => perData._id == node.id)
+    if (!addressBookData) return;
+    localStorage.setItem('editPer', JSON.stringify(addressBookData))
+    window.location.replace(site_properties.add_emp_payroll_page);
 }
 
 
