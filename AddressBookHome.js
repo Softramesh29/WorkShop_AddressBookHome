@@ -26,8 +26,8 @@ const createInnerHtml = () => {
                 <td>${addressBookData._zip}</td>
                 <td>${addressBookData._number}</td>
                 <td>
-                <img id="${addressBookData._id}" onclick="remove(0)" src="../Assets/assets/icons/delete-black-18dp.svg" alt="delete">
-                <img id="${addressBookData._id}" onclick="update(0)" src="../Assets/assets/icons/create-black-18dp.svg" alt="edit">
+                <img id="${addressBookData._id}" onclick="remove(this)" src="../Assets/assets/icons/delete-black-18dp.svg" alt="delete">
+                <img id="${addressBookData._id}" onclick="update(this)" src="../Assets/assets/icons/create-black-18dp.svg" alt="edit">
                  </td>
             </tr>
     `;
